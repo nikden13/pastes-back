@@ -1,0 +1,47 @@
+version: "3.7"
+services:
+    back:
+        build:
+            args:
+                user: test
+                uid: 1000
+            context: .deploy/local
+            dockerfile: Dockerfile
+        image: test-task
+        container_name: back
+        restart: unless-stopped
+        working_dir: /var/www/html
+        volumes:
+            - ./:/var/www/html
+        networks:
+            - test-task
+
+    db:
+        image: mysql:latest
+        container_name: db
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+        volumes:
+            - /opt/mysql_data:/docker-entrypoint-initdb.d
+        networks:
+            - test-task
+
+    nginx:
+        image: nginx:alpine
+        container_name: nginx
+        restart: unless-stopped
+        ports:
+            - 8000:80
+        volumes:
+            - ./:/var/www/html
+            - .deploy/local/nginx:/etc/nginx/conf.d/
+        networks:
+            - test-task
+
+networks:
+    test-task:
+        driver: bridge
