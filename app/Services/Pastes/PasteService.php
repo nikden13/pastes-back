@@ -66,7 +66,7 @@ class PasteService implements PasteServiceInterface
     {
         $baseQuery = $this->baseQueryGetPaste();
 
-        return $baseQuery->where('hash', $hash)->first();
+        return $baseQuery->where('hash', '=', $hash)->first();
     }
 
     /**
@@ -79,8 +79,10 @@ class PasteService implements PasteServiceInterface
         $currentTime = time();
 
         return Paste::query()
-            ->whereNotNull('expiration_time')
-            ->where('expiration_time', '<', $currentTime);
+            ->where(function ($query) use ($currentTime) {
+                $query->whereNull('expiration_time')
+                    ->orWhere('expiration_time', '<', $currentTime);
+            });
     }
 
     /**
