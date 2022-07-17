@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Interfaces\PasteServiceInterface;
+use App\Services\Pastes\PasteService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        app()->bind(PasteServiceInterface::class, PasteService::class);
     }
 
     /**
