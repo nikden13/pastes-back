@@ -6,7 +6,7 @@ use App\Constants\PasteConstants;
 use App\Dto\BasePaginationDto;
 use App\Dto\Pastes\PasteStoreDto;
 use App\Helpers\RandomHelper;
-use App\Interfaces\PasteServiceInterface;
+use App\Interfaces\Pastes\PasteServiceInterface;
 use App\Models\Paste;
 use App\Models\User;
 
@@ -22,7 +22,9 @@ class PasteService implements PasteServiceInterface
     public function store(PasteStoreDto $dto): Paste
     {
         $hash = $this->generateHash();
-        $expirationTime = $this->calculateExpirationTime($dto->expiration_time);
+        $expirationTime = $dto->expiration_time > 0
+            ? $this->calculateExpirationTime($dto->expiration_time)
+            : null;
 
         return Paste::create([
             'author_id' => User::first()->id,
@@ -81,7 +83,7 @@ class PasteService implements PasteServiceInterface
         return Paste::query()
             ->where(function ($query) use ($currentTime) {
                 $query->whereNull('expiration_time')
-                    ->orWhere('expiration_time', '<', $currentTime);
+                    ->orWhere('expiration_time', '>', $currentTime);
             });
     }
 
@@ -112,7 +114,6 @@ class PasteService implements PasteServiceInterface
         }
 
         $currentTime = time();
-
         return $time + $currentTime;
     }
 }

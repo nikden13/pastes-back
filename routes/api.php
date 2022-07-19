@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('pastes')->group(function () {
-    Route::post('', [PasteController::class, 'store'])->middleware('filter.xss');
+    Route::post('', [PasteController::class, 'store']);//->middleware('filter.xss');
     Route::get('', [PasteController::class, 'getList']);
     Route::get('{hash}', [PasteController::class, 'getItemByHash']);
 });

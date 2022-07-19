@@ -26,4 +26,9 @@ class Paste extends Model
         'expiration_time',
         'hash',
     ];
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
 }

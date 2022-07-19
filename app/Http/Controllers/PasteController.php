@@ -6,7 +6,7 @@ use App\Dto\BasePaginationDto;
 use App\Dto\Pastes\PasteStoreDto;
 use App\Http\Requests\BasePaginationRequest;
 use App\Http\Requests\PasteStoreRequest;
-use App\Interfaces\PasteServiceInterface;
+use App\Interfaces\Pastes\PasteServiceInterface;
 use Illuminate\Http\JsonResponse;
 
 class PasteController extends Controller

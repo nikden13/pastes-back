@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interfaces;
+namespace App\Interfaces\Pastes;
 
 use App\Dto\BasePaginationDto;
 use App\Dto\Pastes\PasteStoreDto;

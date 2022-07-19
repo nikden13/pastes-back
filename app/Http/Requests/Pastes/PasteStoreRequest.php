@@ -18,7 +18,7 @@ class PasteStoreRequest extends FormRequest
             'title' => 'required|string|min:1|max:255',
             'body' => 'required|string|min:1|max:' . PasteConstants::MAX_LENGTH_BODY,
             'visibility' => 'required|integer|in:' . join(',', PasteConstants::VISIBILITY_TYPES),
-            'expiration_time' => 'integer|in:' . join(',', PasteConstants::AVAILABLE_EXPIRATION_TIMES),
+            'expiration_time' => 'required|integer|in:' . join(',', PasteConstants::AVAILABLE_EXPIRATION_TIMES),
         ];
     }
 }

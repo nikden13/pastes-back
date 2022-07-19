@@ -9,5 +9,5 @@ class PasteStoreDto extends AbstractDto
     public string $title;
     public string $body;
     public string $visibility;
-    public ?string $expiration_time = null;
+    public ?int $expiration_time = null;
 }

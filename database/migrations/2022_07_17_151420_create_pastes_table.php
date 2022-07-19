@@ -22,7 +22,7 @@ class CreatePastesTable extends Migration
             $table->string('title');
             $table->longText('body');
             $table->smallInteger('visibility');
-            $table->timestamp('expiration_time')->nullable();
+            $table->integer('expiration_time')->nullable();
             $table->string('hash')->unique();
             $table->timestamps();
         });

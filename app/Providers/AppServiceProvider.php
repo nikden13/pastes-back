@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Interfaces\PasteServiceInterface;
+use App\Interfaces\Pastes\PasteServiceInterface;
 use App\Services\Pastes\PasteService;
 use Illuminate\Support\ServiceProvider;
 
