@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Dto\BasePaginationDto;
 use App\Dto\Pastes\PasteStoreDto;
 use App\Http\Requests\BasePaginationRequest;
-use App\Http\Requests\PasteStoreRequest;
+use App\Http\Requests\Pastes\PasteStoreRequest;
 use App\Interfaces\Pastes\PasteServiceInterface;
 use Illuminate\Http\JsonResponse;
 
